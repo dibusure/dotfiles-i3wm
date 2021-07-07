@@ -25,7 +25,6 @@ radius = 0.0
 ;offset-y = 1%
 fixed-center = true
 bottom = no
-enable-ipc = true
 
 foreground = ${colors.foreground-alt}
 background = ${colors.background-alt}
@@ -56,33 +55,35 @@ module-margin-right = 0
 ;font-2 = FontAwesome5Free:style=Solid:pixelsize=10
 ;font-2 = FontAwesome5Brands:style=Solid:pixelsize=10
 
-font-0 = Hack:pixelsize=9;
+font-0 = Russo One:pixelsize=9;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
-font-3 = Font Awesome 5 Free:pixelsize=10
-font-4 = Font Awesome 5 Free Solid:pixelsize=10
-font-5 = Font Awesome 5 Brands:pixelsize=10
+font-3 = Font Awesome 5 Free Solid:style=Solid:size=10;1
+font-5 = FontAwesome5Brands:style=Solid:pixelsize=10
+font-6 = FontAwesome5Free:size=10:0
 
 
 ;separator = " "
 
-modules-left = i3 wlan sp2 trash sp2 fs1 sp2 hum1 xkeyboard sp2 xbacklight
-modules-right = spotify-prev spotify spotify-play-pause spotify-next sp2 eth openweathermap-simple sp2 cpu sp2 btc-price sp2 usd-price sp2 pub-ip sp2 volume sp2 memory sp2 temperature sp2 date
+modules-left = i3 wlan sp2 trash sp2 fs1 sp2 hum1 
+modules-right = eth openweathermap-simple sp2 system-cpu-loadavg sp2  updates-arch-combined sp2 btc-price sp2 usd-price sp2 pub-ip sp2 volume sp2 memory sp2 temperature sp2 date
 
 
 ;modules-left = i3 wlan sp2 trash sp2 fs1 sp2 fs2 sp2 fs3 sp2 fs4 sp2 btcrub sp2 hum1 sp2 hum2 updates-arch-combined
 ;modules-center = vpn-openvpn-status info-ssh-sessions profile xwindow powermenu xkeyboard sp2 xbacklight sp2 netspdeth spi2 battery1  
 ;modules-right = eth openweathermap-fullfeatured sp2 netspdwlan sp2 system-cpu-loadavg sp2 btc-price sp2 usd-price sp2 pub-ip sp2 mybright sp2 volume sp2 filesystem sp1 memory sp1 temperature sp2 battery0 sp2 date 
 
-tray-position = right
-;tray-padding = 0
-;tray-detached = false
-;tray-maxsize = 14
-;tray-transparent = 
-;pseudo-transparency = 
-;tray-scale = 1
-;tray-offset-x = 0
-;tray-offset-y = 0
+tray-position =
+tray-padding = 0
+tray-detached = false
+tray-maxsize = 14
+;tray-transparent = false
+;pseudo-transparency = false
+tray-scale = 1.0
+tray-background = ${colors.background-alt}
+tray-foreground = ${colors.foreground-alt}
+tray-offset-x = 0
+tray-offset-y = 0
 
 ;wm-restack = bspwm
 wm-restack = i3
@@ -222,7 +223,7 @@ label =  %output%
 
 [module/updates-arch-combined]
 type = custom/script
-#exec = /home/dibusure/.config/polybar/scripts/arch_updates.sh
+exec = /home/dibusure/.config/polybar/scripts/arch_updates.sh
 #exec = /home/dibusure/.config/polybar/scripts/au.sh
 interval = 600
 label = %{T4}%{T-} %output%
@@ -341,9 +342,31 @@ label-song-ellipsis = true
 
 [module/xbacklight]
 type = internal/xbacklight
-;label-padding = 2
-format-prefix = " "
-format = <label>
+
+;format = "<label><bar>"
+;label = "  "
+format = "<label>"
+label = " %percentage%%"
+label-foreground = ${colors.foreground-alt}
+label-background = ${colors.background-alt}
+;label-underline = ${colors.foreground}
+
+bar-width = 5
+bar-indicator = []
+bar-indicator-foreground = ${colors.foreground-alt}
+bar-indicator-background = ${colors.background-alt}
+;bar-indicator-underline = ${colors.foreground}
+bar-indicator-font = 1
+bar-fill = -
+bar-fill-font = 1
+bar-fill-foreground = ${colors.foreground-alt}
+bar-fill-background = ${colors.background-alt}
+;bar-fill-underline = ${colors.foreground}
+bar-empty = -
+bar-empty-font = 1
+bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-background = ${colors.background-alt}
+;bar-empty-underline = ${colors.foreground}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -371,10 +394,10 @@ blacklist-0 = num lock
 blacklist-1 = scroll lock
 
 ;format = <label-layout><label-indicator>
-format = <label-layout>
+format = <label-indicator>
 format-spacing = 0
 
-format-prefix = ""
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-background = ${colors.background-alt}
 ;format-prefix-underline = ${colors.foreground}
@@ -382,7 +405,7 @@ format-prefix-background = ${colors.background-alt}
 label-layout = "%layout%"
 label-layout-foreground = ${colors.foreground-alt}
 label-layout-background = ${colors.background-alt}
-label-layout-underline = #99ff99
+;label-layout-underline = ${colors.foreground}
 
 label-indicator-padding = 0
 label-indicator-margin = 0
@@ -407,7 +430,7 @@ label-unmounted-foreground = ${colors.foreground}
 [module/cpu]
 type = internal/cpu
 interval = 1
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-background = ${colors.background-alt}
 ;format-underline = ${colors.foreground}
@@ -437,7 +460,7 @@ label-connected-background = ${colors.background-alt}
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp4s0
 interval = 1.0
 
 ; Available tokens:
@@ -452,7 +475,7 @@ interval = 1.0
 ; Default: %ifname% %local_ip%
 format-connected = "<label-connected>"
 ;format-connected-underline = ${colors.foreground}
-;qlabel-connected = " %essid:0:28:% "
+;label-connected = " %essid:0:28:% "
 ;label-connected = " %essid% (%signal%%)"
 label-connected = " | W: %signal%%"
 label-connected-foreground = ${colors.foreground-alt}
@@ -481,7 +504,7 @@ label-connected-background = ${colors.background-alt}
 
 [module/eth]
 type = internal/network
-interface = enp3s0
+interface = enp0s31f6
 interval = 1.0
 
 format-connected-prefix = " "
@@ -499,10 +522,10 @@ label-connected = " %local_ip% "
 type = internal/date
 interval = 1
 
-date = ""
-date-alt = "%a %d %B"
+date = "%A %d %B"
+date-alt = "%a %Y/%m/%d"
 
-time = "%H:%M"
+time = " %H:%M"
 time-alt = " %H:%M"
 
 format-prefix = " "
@@ -692,36 +715,6 @@ menu-2-0 = power off
 menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
-
-[module/spotify]
-type = custom/script
-tail = true
-; prefix symbol is shown before the text
-format-prefix = " "
-format = <label>
-exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
-click-left = i3-msg '[class="Spotify"] focus'
-
-
-[module/spotify-prev]
-type = custom/script
-exec = echo " "
-format = <label>
-click-left = playerctl previous spotify
-
-[module/spotify-play-pause]
-type = custom/ipc
-hook-0 = echo " "
-hook-1 = echo " "
-initial = 1
-click-left = playerctl -p spotify play-pause
-
-[module/spotify-next]
-type = custom/script
-exec = echo " "
-format = <label>
-click-left = playerctl next spotify
-
 
 [settings]
 throttle-output = 5

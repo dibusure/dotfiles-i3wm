@@ -1,6 +1,6 @@
-;====================================================
+;=====================================================
 ;
-;  To learn more about how to configure Polybar
+; To learn more about how to configure Polybar
 ;  go to https://github.com/jaagr/polybar
 ;
 ;   The README contains alot of information
@@ -8,10 +8,10 @@
 ;=====================================================
 
 [colors]
-background = #BCC3C3
-background-alt = #002B36
-foreground = #002B36
-foreground-alt = #BCC3C3
+background = #586e75
+background-alt = #FDF6E3
+foreground = #FDF6E3
+foreground-alt = #586e75
 primary = #ffb52a
 secondary = #e60053
 alert = #FF0000
@@ -25,7 +25,6 @@ radius = 0.0
 ;offset-y = 1%
 fixed-center = true
 bottom = no
-enable-ipc = true
 
 foreground = ${colors.foreground-alt}
 background = ${colors.background-alt}
@@ -50,203 +49,37 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-;font-0 = Hack:pixelsize=9;3
-;font-1 = siji:pixelsize=10;3
-;font-2 = FontAwesome5Free:size=10:0;
-;font-2 = FontAwesome5Free:style=Solid:pixelsize=10
-;font-2 = FontAwesome5Brands:style=Solid:pixelsize=10
-
-font-0 = Hack:pixelsize=9;
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = Font Awesome 5 Free:pixelsize=10
-font-4 = Font Awesome 5 Free Solid:pixelsize=10
-font-5 = Font Awesome 5 Brands:pixelsize=10
-
+font-0 = Hack:pixelsize=9;3
+font-1 = siji:pixelsize=10;3
+font-2 = FontAwesome5Free:size=10:0;
 
 ;separator = " "
 
-modules-left = i3 wlan sp2 trash sp2 fs1 sp2 hum1 xkeyboard sp2 xbacklight
-modules-right = spotify-prev spotify spotify-play-pause spotify-next sp2 eth openweathermap-simple sp2 cpu sp2 btc-price sp2 usd-price sp2 pub-ip sp2 volume sp2 memory sp2 temperature sp2 date
-
-
-;modules-left = i3 wlan sp2 trash sp2 fs1 sp2 fs2 sp2 fs3 sp2 fs4 sp2 btcrub sp2 hum1 sp2 hum2 updates-arch-combined
-;modules-center = vpn-openvpn-status info-ssh-sessions profile xwindow powermenu xkeyboard sp2 xbacklight sp2 netspdeth spi2 battery1  
-;modules-right = eth openweathermap-fullfeatured sp2 netspdwlan sp2 system-cpu-loadavg sp2 btc-price sp2 usd-price sp2 pub-ip sp2 mybright sp2 volume sp2 filesystem sp1 memory sp1 temperature sp2 battery0 sp2 date 
+modules-left = profile i3 xwindow
+;modules-center =
+modules-right = xkeyboard netspdwlan netspdeth sp1 xbacklight sp2 volume sp2 filesystem sp1 memory sp1 temperature sp2 battery1 battery0 sp2 date eth sp2 wlan eth
 
 tray-position = right
-;tray-padding = 0
-;tray-detached = false
-;tray-maxsize = 14
-;tray-transparent = 
-;pseudo-transparency = 
-;tray-scale = 1
-;tray-offset-x = 0
-;tray-offset-y = 0
+tray-padding = 0
+tray-detached = false
+tray-maxsize = 14
+tray-transparent = false
+tray-scale = 1.0
+tray-background = ${colors.background-alt}
+tray-foreground = ${colors.foreground-alt}
+tray-offses-x = 0
+tray-offset-y = 0
 
 ;wm-restack = bspwm
-wm-restack = i3
+;wm-restack = i3
 
 ;override-redirect = true
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
-;cursor-scroll = ns-resize
-
-[module/mybright]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/brightness.sh 
-scroll-up = /home/dibusure/.config/polybar/scripts/brightness.sh + DP1
-scroll-down = /home/dibusure/.config/polybar/scripts/brightness.sh - DP1
-label = %{T4}%{T-} %output%
-interval = 0.5 
-
-[module/caffeine]
-type = custom/menu
-
-label-open = 
-label-close = 
-label-open-padding = 0
-label-close-padding = 1
-label-separator = " "
-
-menu-0-0 = 
-menu-0-0-exec = caffeine -a
-menu-0-1 = 
-menu-0-1-exec = caffeine -d
-menu-0-2 = 
-menu-0-2-exec = caffeine kill
-
-[module/fs1]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/free_space_home.sh
-interval = 600
-label = %{T4}%{T-} %output%
-
-[module/fs2]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/free_space_mnt.sh
-interval = 600
-label = %{T4}%{T-} %output%
-
-[module/fs3]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/free_space_buflash.sh
-interval = 600
-label = %{T4}%{T-} %output%
-
-[module/fs4]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/free_space_myarchserver.sh
-interval = 6000
-label = %{T4}%{T-} %output%
-
-[module/btcrub]
-type=custom/script
-exec=/home/dibusure/.config/polybar/scripts/usd_price_2.sh
-interval = 6000
-
-[module/hum1]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/humidity1.sh
-interval = 600
-
-[module/hum2]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/humidity2.sh
-interval = 600
-
-
-
-
-[module/ttt]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/inbox-imap-shellnetrc.sh
-interval = 10
-label = %{T4}%{T-} %output%
-click-left = thunderbird 
-
-[module/unread_mail]
-type = custom/script
-click-left=  thunderbird & ; you can set your own client
-exec = /home/dibusure/.config/polybar/scripts/UnseenMail.py
-;exec = /home/dibusure/.config/polybar/scripts/inbox-imap-shellnetrc.sh
-interval = 100
-
-[module/openweathermap-simple]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/openweathermap-simple.sh
-interval = 600
-label-font = 0
-
-[module/trash]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/trash.sh
-interval = 1
-label = %output%
-format-prefix = "%{T4}%{T-} "
-format-prefix-padding-left = 0
-format-prefix-padding-right = 0
-;format-prefix-foreground = ${colors.foreground}
-label-padding = 0
-;label-foreground = ${colors.foreground}
-click-left = pcmanfm -n ~/.local/share/Trash/files
-click-right = rm -rf ~/.local/share/Trash/files/* ;exec notify-send 'Trash cleaned'
-
-
-[module/test1]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/inbox-imap-shellnetrc.sh
-interval = 60
-label = 1 %output%
-
-[module/system-cpu-loadavg]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/cpu_loadavg.sh
-interval = 5
-label = %output%
-
-[module/pub-ip]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/pub_ip_polybar.sh
-interval = 5
-label = %{T4}%{T-} %output%
-
-[module/btc-price]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/btc_price_coinm.sh
-interval = 5
-label =  %output%
-
-[module/updates-arch-combined]
-type = custom/script
-#exec = /home/dibusure/.config/polybar/scripts/arch_updates.sh
-#exec = /home/dibusure/.config/polybar/scripts/au.sh
-interval = 600
-label = %{T4}%{T-} %output%
-
-[module/usd-price]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/usd_price_cbr.sh
-interval = 5
-label =  %output%
-
-[module/info-ssh-sessions]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/info_ssh_sessions.sh
-interval = 60
-
-[module/soft]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/info-softwarecounter.py
-interval = 10
-
-[module/vpn-openvpn-status]
-type = custom/script
-exec = /home/dibusure/.config/polybar/scripts/vpn_status.sh
-interval = 5
+cursor-scroll = ns-resize
 
 [module/sp1]
 type = custom/text
@@ -297,8 +130,8 @@ label-mode-background = ${colors.background-alt}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-foreground = ${colors.foreground}
-label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.background-alt}
+label-focused-background = ${colors.foreground-alt}
 label-focused-underline = ${colors.foreground-alt}
 label-focused-padding = 1
 
@@ -341,9 +174,31 @@ label-song-ellipsis = true
 
 [module/xbacklight]
 type = internal/xbacklight
-;label-padding = 2
-format-prefix = " "
-format = <label>
+
+;format = "<label><bar>"
+;label = "  "
+format = "<label>"
+label = " %percentage%%"
+label-foreground = ${colors.foreground-alt}
+label-background = ${colors.background-alt}
+;label-underline = ${colors.foreground}
+
+bar-width = 5
+bar-indicator = []
+bar-indicator-foreground = ${colors.foreground-alt}
+bar-indicator-background = ${colors.background-alt}
+;bar-indicator-underline = ${colors.foreground}
+bar-indicator-font = 1
+bar-fill = -
+bar-fill-font = 1
+bar-fill-foreground = ${colors.foreground-alt}
+bar-fill-background = ${colors.background-alt}
+;bar-fill-underline = ${colors.foreground}
+bar-empty = -
+bar-empty-font = 1
+bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-background = ${colors.background-alt}
+;bar-empty-underline = ${colors.foreground}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -371,10 +226,10 @@ blacklist-0 = num lock
 blacklist-1 = scroll lock
 
 ;format = <label-layout><label-indicator>
-format = <label-layout>
+format = <label-indicator>
 format-spacing = 0
 
-format-prefix = ""
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-background = ${colors.background-alt}
 ;format-prefix-underline = ${colors.foreground}
@@ -382,7 +237,7 @@ format-prefix-background = ${colors.background-alt}
 label-layout = "%layout%"
 label-layout-foreground = ${colors.foreground-alt}
 label-layout-background = ${colors.background-alt}
-label-layout-underline = #99ff99
+;label-layout-underline = ${colors.foreground}
 
 label-indicator-padding = 0
 label-indicator-margin = 0
@@ -407,7 +262,7 @@ label-unmounted-foreground = ${colors.foreground}
 [module/cpu]
 type = internal/cpu
 interval = 1
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-background = ${colors.background-alt}
 ;format-underline = ${colors.foreground}
@@ -418,7 +273,7 @@ label-background = ${colors.background-alt}
 [module/memory]
 type = internal/memory
 interval = 1
-format-prefix = ""
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-background = ${colors.background-alt}
 ;format-underline = ${colors.foreground}
@@ -428,16 +283,16 @@ label-background = ${colors.background-alt}
 
 [module/netspdwlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp4s0
 interval = 1.0
 format-connected = "<label-connected>"
-label-connected = "%downspeed:9:9% %upspeed:9:9%"
+label-connected = "%downspeed:3% %upspeed:3% |"
 label-connected-foreground = ${colors.foreground-alt}
 label-connected-background = ${colors.background-alt}
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp4s0
 interval = 1.0
 
 ; Available tokens:
@@ -450,11 +305,9 @@ interval = 1.0
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-format-connected = "<label-connected>"
+format-connected = "<ramp-signal><label-connected>"
 ;format-connected-underline = ${colors.foreground}
-;qlabel-connected = " %essid:0:28:% "
-;label-connected = " %essid% (%signal%%)"
-label-connected = " | W: %signal%%"
+label-connected = " %essid:0:10:% "
 label-connected-foreground = ${colors.foreground-alt}
 label-connected-background = ${colors.background-alt}
 
@@ -481,7 +334,7 @@ label-connected-background = ${colors.background-alt}
 
 [module/eth]
 type = internal/network
-interface = enp3s0
+interface = enp0s31f6
 interval = 1.0
 
 format-connected-prefix = " "
@@ -499,10 +352,10 @@ label-connected = " %local_ip% "
 type = internal/date
 interval = 1
 
-date = ""
-date-alt = "%a %d %B"
+date = "0%u%y%m%d"
+date-alt = "%a %Y/%m/%d"
 
-time = "%H:%M"
+time = "%H%M"
 time-alt = " %H:%M"
 
 format-prefix = " "
@@ -515,7 +368,7 @@ label-foreground = ${colors.foreground-alt}
 label-background = ${colors.background-alt}
 
 [module/volume]
-type = internal/alsa
+type = internal/volume
 
 ; Soundcard to be used
 ; Usually in the format hw:# where # is the card number
@@ -545,7 +398,7 @@ format-muted-foreground = ${colors.foreground-alt}
 format-muted-background = ${colors.background-alt}
 label-muted = MUTED
 
-bar-volume-width = 10
+bar-volume-width = 5
 bar-volume-foreground-0 = ${colors.foreground-alt}
 bar-volume-foreground-1 = ${colors.foreground-alt}
 bar-volume-foreground-2 = ${colors.foreground-alt}
@@ -586,21 +439,21 @@ format-discharging = "<ramp-capacity><label-discharging>"
 label-discharging-foreground = ${colors.foreground-alt}
 label-discharging-background = ${colors.background-alt}
 
-format-full-prefix = " "
+format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-prefix-background = ${colors.background-alt}
 ;format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = " "
+ramp-capacity-0 = "  "
 ramp-capacity-0-foreground = ${colors.alert}
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
 ramp-capacity-foreground = ${colors.foreground-alt}
 ramp-capacity-background = ${colors.background-alt}
 
-animation-charging-0 = " "
-animation-charging-1 = " "
-animation-charging-2 = " "
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-background = ${colors.background-alt}
 animation-charging-framerate = 750
@@ -671,9 +524,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = %{T4}%{T-}
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close = cancel
+label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
@@ -693,36 +546,6 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
-[module/spotify]
-type = custom/script
-tail = true
-; prefix symbol is shown before the text
-format-prefix = " "
-format = <label>
-exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
-click-left = i3-msg '[class="Spotify"] focus'
-
-
-[module/spotify-prev]
-type = custom/script
-exec = echo " "
-format = <label>
-click-left = playerctl previous spotify
-
-[module/spotify-play-pause]
-type = custom/ipc
-hook-0 = echo " "
-hook-1 = echo " "
-initial = 1
-click-left = playerctl -p spotify play-pause
-
-[module/spotify-next]
-type = custom/script
-exec = echo " "
-format = <label>
-click-left = playerctl next spotify
-
-
 [settings]
 throttle-output = 5
 throttle-output-for = 10
@@ -741,3 +564,4 @@ compositing-border = over
 margin-top = 5
 margin-bottom = 5
 
+; vim:ft=dosini
