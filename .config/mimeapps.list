@@ -1,0 +1,6 @@
+[Added Associations]
+application/octet-stream=vim.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-PIEB60.desktop;
+
+[Default Applications]
+x-scheme-handler/tg=userapp-Telegram Desktop-PIEB60.desktop
