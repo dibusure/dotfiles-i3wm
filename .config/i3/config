@@ -441,7 +441,7 @@ exec_always --no-startup-id alttab -fg "#808080" -bg "#252525" -frame "#959595" 
 exec_always --no-startup-id feh --bg-scale /home/dibusure/.wallpapers/archlinux_yellow.png
 
 exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:win_space_toggle"
-bindsym Print exec flameshot gui
+bindsym Print exec scrot
 
 exec --no-startup-id /home/dibusure/.config/polybar/launch.sh
 
