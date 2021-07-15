@@ -8,10 +8,10 @@
 ;=====================================================
 
 [colors]
-background = #BCC3C3
-background-alt = #002B36
-foreground = #002B36
-foreground-alt = #BCC3C3
+background = #aa2F343F
+background-alt = #aa2F343F
+foreground = #ffffff
+foreground-alt = #ffffff
 primary = #ffb52a
 secondary = #e60053
 alert = #FF0000
@@ -56,7 +56,7 @@ module-margin-right = 0
 ;font-2 = FontAwesome5Free:style=Solid:pixelsize=10
 ;font-2 = FontAwesome5Brands:style=Solid:pixelsize=10
 
-font-0 = Hack:pixelsize=9;
+font-0 = Ubuntu:pixelsize=9
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = Font Awesome 5 Free:pixelsize=10
@@ -517,58 +517,16 @@ label-background = ${colors.background-alt}
 [module/volume]
 type = internal/alsa
 
-; Soundcard to be used
-; Usually in the format hw:# where # is the card number
-; You can find the different card numbers in `/proc/asound/cards`
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
+format-volume = <label-volume>
+label-volume =  %percentage%%
 
-; Name of the master, speaker and headphone mixers
-; Use the following command to list available mixer controls:
-; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
-; If master, speaker or headphone-soundcard isn't the default,
-; use `amixer -c # scontrols` instead where # is the number
-; of the master, speaker or headphone soundcard respectively
-;
-; Default: Master
-master-mixer = Master
+label-muted = 
 
-format-volume = "<label-volume><bar-volume>"
-label-volume = " "
-label-volume-foreground = ${colors.foreground-alt}
-label-volume-background = ${colors.background-alt}
-;label-volume-underline = ${colors.foreground}
+label-volume-foreground = ${root.foreground}
+label-muted-foreground = #d63131
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-format-muted-background = ${colors.background-alt}
-label-muted = MUTED
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.foreground-alt}
-bar-volume-foreground-1 = ${colors.foreground-alt}
-bar-volume-foreground-2 = ${colors.foreground-alt}
-bar-volume-foreground-3 = ${colors.foreground-alt}
-bar-volume-foreground-4 = ${colors.foreground-alt}
-bar-volume-foreground-5 = ${colors.foreground-alt}
-bar-volume-foreground-6 = ${colors.foreground-alt}
-bar-volume-gradient = false
-bar-volume-indicator = []
-bar-volume-indicator-font = 1
-bar-volume-indicator-foreground = ${colors.foreground-alt}
-bar-volume-indicator-background = ${colors.background-alt}
-;bar-volume-indicator-underline = ${colors.foreground}
-bar-volume-fill = -
-bar-volume-fill-font = 1
-bar-volume-fill-foreground = ${colors.foreground-alt}
-bar-volume-fill-background = ${colors.background-alt}
-;bar-volume-fill-underline = ${colors.foreground}
-bar-volume-empty = -
-bar-volume-empty-font = 1
-bar-volume-empty-foreground = ${colors.foreground-alt}
-bar-volume-empty-background = ${colors.background-alt}
-;bar-volume-empty-underline = ${colors.foreground}
+format-volume-underline = #1db954
+format-muted-underline = #1db954
 
 [module/battery0]
 type = internal/battery
@@ -740,4 +698,5 @@ compositing-border = over
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+
 
